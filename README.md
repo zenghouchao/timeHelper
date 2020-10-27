@@ -5,6 +5,7 @@
 
 
 **Golang get timestamp extension library**
+- Golang 获取时间戳助手函数库
 
 # 安装使用
 `go get github.com/zenghouchao/timeHelper`
