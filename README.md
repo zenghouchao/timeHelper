@@ -5,7 +5,7 @@
 
 
 **Golang get timestamp extension library**
-- Golang 获取时间戳助手函数库
+- # Golang 获取时间戳助手函数库
 
 # 安装使用
 `go get github.com/zenghouchao/timeHelper`
@@ -25,5 +25,9 @@
 
 `timeHelper.LastWeek()`   `// 上周开始和结束的时间戳`
 
-
 `timeHelper.LastMonth()`   `// 上月开始和结束的时间戳`
+
+`timeHelper.WhatDay()`   `// 今天是星期几`
+
+`timeHelper.ThisMonthDayCount()`   `// 当月天数`
+ 
