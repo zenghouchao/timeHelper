@@ -103,12 +103,13 @@ func getThisMondayTime() (mondayTime int64) {
 	return
 }
 
-// Gets the timestamp from zero a few days ago to the present
-func DayToNow(day int) (int64, int64) {
+// Gets a timestamp from the wee hours of a few days ago to the wee hours of this morning
+func DayToNowZeroPM(day int) (int64, int64) {
 	t := time.Now()
 	tTime := time.Date(t.Year(), t.Month(), t.Day()-day, 0, 0, 0, 0, time.Local)
 	startTime := tTime.Unix()
-	return startTime, t.Unix()
+	zero := time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, t.Location()).Unix()
+	return startTime, zero
 }
 
 // What day is it today
@@ -127,4 +128,18 @@ func ThisMonthDayCount() (count int) {
 	hours := tTime.AddDate(0, 1, 0).Sub(tTime).Hours()
 	count = int(hours / 24)
 	return
+}
+
+// The number of days between two time intervals
+func TimeIntervalDay(startTime, endTime string) int {
+	t1, err := time.ParseInLocation("2006-01-02", startTime, time.Local)
+	if err != nil {
+		panic(err)
+	}
+	t2, terr := time.ParseInLocation("2006-01-02", endTime, time.Local)
+	if terr != nil {
+		panic(err)
+	}
+	day := (t2.Unix() - t1.Unix()) / 86400
+	return int(day)
 }
