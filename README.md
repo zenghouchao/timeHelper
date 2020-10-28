@@ -19,8 +19,6 @@
 
 `timeHelper.Month()`  `// 本月开始和结束的时间戳`
 
-`timeHelper.Month()`   `// 本周开始和结束的时间戳`
-
 `timeHelper.Yesterday()`   `// 昨天开始和结束的时间戳`
 
 `timeHelper.Week()`   `// 本周开始和结束的时间戳`
@@ -32,4 +30,6 @@
 `timeHelper.WhatDay()`   `// 今天是星期几`
 
 `timeHelper.ThisMonthDayCount()`   `// 当月天数`
+
+`timeHelper.DayToNowZeroPM(7)`   `// 获取7天前零点到昨日结束的时间戳`
  
