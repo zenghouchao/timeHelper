@@ -163,6 +163,7 @@ func RecentMonths(month int, isThisMonth bool) (int64, int64) {
 	start, end := Month()
 
 	if isThisMonth {
+		// Contains this month
 		month -= 1
 		endTime = end
 	} else {
