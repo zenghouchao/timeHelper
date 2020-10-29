@@ -143,3 +143,33 @@ func TimeIntervalDay(startTime, endTime string) int {
 	day := (t2.Unix() - t1.Unix()) / 86400
 	return int(day)
 }
+
+// Get a timestamp from the last few weeks
+func RecentWeeks(week int, isThisWeek bool) (int64, int64) {
+	var endTime int64
+	if isThisWeek {
+		// Contains this week
+		_, endTime = Week()
+	} else {
+		endTime, _ = Week()
+	}
+	startTime := endTime - (86400*7)*int64(week)
+	return startTime, endTime
+}
+
+// Get a timestamp for the last few months
+func RecentMonths(month int, isThisMonth bool) (int64, int64) {
+	var endTime int64
+	start, end := Month()
+
+	if isThisMonth {
+		month -= 1
+		endTime = end
+	} else {
+		endTime = start
+	}
+	t := time.Now()
+	tTime := time.Date(t.Year(), t.Month(), 1, 0, 0, 0, 0, t.Location()).AddDate(0, -month, 0)
+	startTime := tTime.Unix()
+	return startTime, endTime
+}
