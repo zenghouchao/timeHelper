@@ -32,4 +32,6 @@
 `timeHelper.ThisMonthDayCount()`   `// 当月天数`
 
 `timeHelper.DayToNowZeroPM(7)`   `// 获取7天前零点到昨日结束的时间戳`
+
+`timeHelper.TimeIntervalDay(2020-09-01,2020-10-30)`   `// 两个时间段间隔天数`
  
