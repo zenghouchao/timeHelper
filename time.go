@@ -1,92 +1,90 @@
 package timeHelper
 
-import (
-	"time"
-)
+import "time"
 
 // Gets today's day timestamp
-func Today() (int64, int64) {
+func Today() (startTime, endTime int64) {
 	t := time.Now()
 	tTime := time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, t.Location())
-	startTime := tTime.Unix()
-	endTime := tTime.AddDate(0, 0, 1).Unix()
-	return startTime, endTime
+	startTime = tTime.Unix()
+	endTime = tTime.AddDate(0, 0, 1).Unix()
+	return
 }
 
 // Get the timestamp of yesterday
-func Yesterday() (int64, int64) {
+func Yesterday() (startTime, endTime int64) {
 	t := time.Now()
 	tTime := time.Date(t.Year(), t.Month(), t.Day(), 0, 0, 0, 0, t.Location())
-	endTime := tTime.Unix()
-	startTime := endTime - 86400
-	return startTime, endTime
+	endTime = tTime.Unix()
+	startTime = endTime - 86400
+	return
 }
 
 // Gets the tomorrow day timestamp
-func Tomorrow() (int64, int64) {
+func Tomorrow() (startTime, endTime int64) {
 	t := time.Now()
 	tTime := time.Date(t.Year(), t.Month(), t.Day()+1, 0, 0, 0, 0, t.Location())
-	startTime := tTime.Unix()
-	endTime := startTime + 86400
-	return startTime, endTime
+	startTime = tTime.Unix()
+	endTime = startTime + 86400
+	return
 }
 
 // Get this week's timestamp
-func Week() (int64, int64) {
-	startTime := getThisMondayTime()
-	endTime := startTime + (86400 * 7)
-	return startTime, endTime
+func Week() (startTime, endTime int64) {
+	startTime = getThisMondayTime()
+	endTime = startTime + (86400 * 7)
+	return
 }
 
 // Gets last week's timestamp
-func LastWeek() (int64, int64) {
-	endTime := getThisMondayTime()
-	startTime := endTime - (86400 * 7)
-	return startTime, endTime
+func LastWeek() (startTime, endTime int64) {
+	endTime = getThisMondayTime()
+	startTime = endTime - (86400 * 7)
+	return
 }
 
 // Get the next week timestamp
-func NextWeek() (int64, int64) {
+func NextWeek() (startTime, endTime int64) {
 	mondayTime := getThisMondayTime()
-	startTime := mondayTime + (86400 * 7)
-	endTime := mondayTime + (86400 * 7 * 2)
-	return startTime, endTime
+	startTime = mondayTime + (86400 * 7)
+	endTime = mondayTime + (86400 * 7 * 2)
+	return
 }
 
 // Gets the timestamp of the beginning and end of the month
-func Month() (int64, int64) {
+func Month() (startTime, endTime int64) {
 	t := time.Now()
 	tTime := time.Date(t.Year(), t.Month(), 1, 0, 0, 0, 0, t.Location())
-	startTime := tTime.Unix()
-	endTime := tTime.AddDate(0, 1, 0).Unix()
-	return startTime, endTime
+	startTime = tTime.Unix()
+	endTime = tTime.AddDate(0, 1, 0).Unix()
+	return
 }
 
 // Gets the timestamp of the beginning and end of the last month
-func LastMonth() (int64, int64) {
+func LastMonth() (startTime, endTime int64) {
 	t := time.Now()
 	tTime := time.Date(t.Year(), t.Month()-1, 1, 0, 0, 0, 0, t.Location())
-	startTime := tTime.Unix()
-	endTime := tTime.AddDate(0, 1, 0).Unix()
-	return startTime, endTime
+	startTime = tTime.Unix()
+	endTime = tTime.AddDate(0, 1, 0).Unix()
+	return
 }
 
 // Gets the timestamp of the beginning and end of the year
-func Year() (int64, int64) {
+func Year() (startTime, endTime int64) {
 	t := time.Now()
 	tTime := time.Date(t.Year(), 1, 1, 0, 0, 0, 0, t.Location())
-	startTime := tTime.Unix()
-	endTime := tTime.AddDate(1, 0, 0).Unix()
-	return startTime, endTime
+	startTime = tTime.Unix()
+	endTime = tTime.AddDate(1, 0, 0).Unix()
+	return
 }
 
 // Gets the timestamp of the beginning and end of last year
-func LastYear() (int64, int64) {
+func LastYear() (startTime, endTime int64) {
 	t := time.Now()
 	tTime := time.Date(t.Year()-1, 1, 1, 0, 0, 0, 0, t.Location())
-	startTime := tTime.Unix()
-	endTime := tTime.AddDate(1, 0, 0).Unix()
-	return startTime, endTime
+	startTime = tTime.Unix()
+	endTime = tTime.AddDate(1, 0, 0).Unix()
+	return
 }
 
 // Get a Monday timestamp
@@ -145,21 +143,19 @@ func TimeIntervalDay(startTime, endTime string) int {
 }
 
 // Get a timestamp from the last few weeks
-func RecentWeeks(week int, isThisWeek bool) (int64, int64) {
-	var endTime int64
+func RecentWeeks(week int, isThisWeek bool) (startTime, endTime int64) {
 	if isThisWeek {
 		// Contains this week
 		_, endTime = Week()
 	} else {
 		endTime, _ = Week()
 	}
-	startTime := endTime - (86400*7)*int64(week)
-	return startTime, endTime
+	startTime = endTime - (86400*7)*int64(week)
+	return
 }
 
 // Get a timestamp for the last few months
-func RecentMonths(month int, isThisMonth bool) (int64, int64) {
-	var endTime int64
+func RecentMonths(month int, isThisMonth bool) (startTime, endTime int64) {
 	start, end := Month()
 
 	if isThisMonth {
@@ -171,6 +167,6 @@ func RecentMonths(month int, isThisMonth bool) (int64, int64) {
 	}
 	t := time.Now()
 	tTime := time.Date(t.Year(), t.Month(), 1, 0, 0, 0, 0, t.Location()).AddDate(0, -month, 0)
-	startTime := tTime.Unix()
-	return startTime, endTime
+	startTime = tTime.Unix()
+	return
 }
