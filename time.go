@@ -1,6 +1,8 @@
 package timeHelper
 
-import "time"
+import (
+	"time"
+)
 
 // Gets today's day timestamp
 func Today() (startTime, endTime int64) {
@@ -117,6 +119,12 @@ func WhatDay() (weekDay int) {
 		weekDay = 7
 	}
 	return weekDay
+}
+
+// How many weeks of the year are we currently in
+func WhatWeek() (week int) {
+	_, week = time.Now().ISOWeek()
+	return
 }
 
 // Get the number of days of the month
