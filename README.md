@@ -29,6 +29,8 @@
 
 `timeHelper.WhatDay()`   `// 今天是星期几`
 
+`timeHelper.WhatWeek()`   `// 一年的第几周`
+
 `timeHelper.ThisMonthDayCount()`   `// 当月天数`
 
 `timeHelper.DayToNowZeroPM(7)`   `// 获取7天前零点到昨日结束的时间戳`
