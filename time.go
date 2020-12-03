@@ -178,3 +178,23 @@ func RecentMonths(month int, isThisMonth bool) (startTime, endTime int64) {
 	startTime = tTime.Unix()
 	return
 }
+
+// Days are converted to seconds
+func DaysToSecond(day int) int64 {
+	return int64(day * 86400)
+}
+
+// The number of weeks is converted to seconds
+func WeekToSecond(week int) int64 {
+	return DaysToSecond(7) * int64(week)
+}
+
+// Gets the timestamp n days ago
+func DaysAgo(day int) int64 {
+	return time.Now().Unix() - DaysToSecond(day)
+}
+
+// Gets the timestamp after n days
+func DaysAfter(day int) int64 {
+	return time.Now().Unix() + DaysToSecond(day)
+}
